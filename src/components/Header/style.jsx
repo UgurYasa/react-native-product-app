@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container:{
-        backgroundColor:"bisque"
+        backgroundColor:"#A9A9A9"
     },
     input: {
         fontSize: 20,
@@ -11,11 +11,5 @@ export default StyleSheet.create({
         backgroundColor: '#d9dddc',
         padding: 10,
         borderRadius: 10,
-      },
-      text: {
-        fontWeight: 'bold',
-        fontSize: 32,
-        fontStyle: 'italic',
-        color: 'purple',
       },
 });

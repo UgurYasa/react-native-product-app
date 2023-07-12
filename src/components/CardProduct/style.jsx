@@ -31,6 +31,6 @@ export default StyleSheet.create({
   },
   boxContainer: {
     flex: 1,
-    backgroundColor: "bisque",
+    backgroundColor: "#A9A9A9",
   },
 });

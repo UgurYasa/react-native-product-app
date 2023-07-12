@@ -2,16 +2,14 @@ import { useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
-  Image,
   TextInput,
   Text,
-  Dimensions,
   TouchableOpacity,
   Alert,
 } from "react-native";
-import Logo from "../components/Logo/Logo";
+import Logo from "../../components/Logo";
 
-const LoginScreen = (props) => {
+const Login = ({ navigation }) => {
   //Burada Users dizisi giriş kontrolu için oluşturulmuştur.
   const users = [
     { userId: 1, userName: "uguryasa", password: "1234" },
@@ -32,7 +30,7 @@ const LoginScreen = (props) => {
   };
 
   const navigateToPage = () => {
-    props.navigation.navigate("AddProduct", {
+    navigation.navigate("Home", {
       userName: userName.trim() ? userName : "",
     });
   };
@@ -77,7 +75,7 @@ const LoginScreen = (props) => {
         secureTextEntry
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Giriş Yap</Text>
+        <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   input: {
-    marginTop: 30,
+    marginTop: 40,
     width: "80%",
     height: 40,
     borderWidth: 1,
@@ -107,11 +105,11 @@ const styles = StyleSheet.create({
   button: {
     width: "80%",
     height: 40,
-    backgroundColor: "blue",
+    backgroundColor: "#607d8b",
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
-    margin: 50,
+    margin: 75,
   },
   buttonText: {
     color: "white",
@@ -119,4 +117,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export default LoginScreen;
+export default Login;
