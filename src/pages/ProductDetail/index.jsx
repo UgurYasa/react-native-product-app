@@ -9,7 +9,7 @@ const ProductDetail = (props) => {
   const product = props.route.params.item;
   return (
     <SafeAreaView style={styles.container}>
-      <Logo style={{ height: "15%" }} />
+      <Logo style={{ height: "15%",marginTop: 24,marginBottom: 15,}} />
       <View>
         <View style={styles.textLeftTopContainer}>
           <Text style={styles.textPercentage}>

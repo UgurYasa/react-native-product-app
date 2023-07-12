@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -6,8 +6,8 @@ import { Alert } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import CardProduct from "../../components/CardProduct";
 import Logo from "../../components/Logo";
-import Header from "../../components/Header";
-import { SafeAreaView } from "react-native-safe-area-context";
+import SearchBar from "../../components/SearchBar";
+
 
 const Products = ({ navigation }) => {
   const [data, setData] = useState([]);
@@ -61,13 +61,13 @@ const Products = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#A9A9A9" }}>
+    <View style={{ backgroundColor: "#A9A9A9",flex:1 }}>
       {data && (
-        <View>
-          <Logo style={{height:"20%"}} />
-          <Header onChangeText={onChangeText}></Header>
+        <View style={{flex:1}}>
+          <Logo style={{ height: "15%",marginBottom:15, }} />
+          <SearchBar onChangeText={onChangeText}></SearchBar>
           <FlatList
-            style={{ margin: 5, height: "68%" }}
+            style={{ margin: 5, height: "70%" }}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => item.id.toString()}
             data={liste}
@@ -76,7 +76,7 @@ const Products = ({ navigation }) => {
           />
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

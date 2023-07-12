@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./style";
 
 
-const Header = (props) => {
+const SearchBar = (props) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -16,4 +16,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default SearchBar;

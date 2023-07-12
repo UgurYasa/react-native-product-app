@@ -30,7 +30,7 @@ const Login = ({ navigation }) => {
   };
 
   const navigateToPage = () => {
-    navigation.navigate("Home", {
+    navigation.navigate("Tabs", {
       userName: userName.trim() ? userName : "",
     });
   };
@@ -59,7 +59,7 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Logo />
+      <Logo style={{marginTop: 24,}}/>
       <TextInput
         style={styles.input}
         onChangeText={setUserName}

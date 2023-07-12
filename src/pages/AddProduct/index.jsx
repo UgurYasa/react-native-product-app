@@ -34,7 +34,7 @@ const AddProduct = (props) => {
     }));
   };
   const navigateToPage = () => {
-    props.navigation.navigate("Login");
+    props.navigation.navigate("ProductDetail", formData);
   };
   const resetInput = () => {
     setFormData({
@@ -48,15 +48,17 @@ const AddProduct = (props) => {
       stock: 0,
       brand: "",
       category: "",
+      thumbnail: "",
       images: [],
     });
   };
 
   const handleSubmit = () => {
     handleChange("id", "100");
+    handleChange("discountPercentage", parseInt(formData.discountPercentage, 10));
+    //  resetInput();
     console.log(formData);
     navigateToPage();
-    resetInput();
   };
 
   return (
@@ -140,7 +142,7 @@ const AddProduct = (props) => {
         />
 
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={[styles.text,{alignSelf:"center"}]}>Submit</Text>
+          <Text style={[styles.text, { alignSelf: "center" }]}>Submit</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
