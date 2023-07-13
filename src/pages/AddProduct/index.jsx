@@ -16,16 +16,15 @@ const AddProduct = (props) => {
   // const api = "https://fakestoreapi.com/products";
   const api = "https://dummyjson.com/products";
   const [formData, setFormData] = useState({
-    title: "iPad",
-    description: "Design by Apple",
-    price: 980,
-    discountPercentage: 30,
-    rating: 5,
-    stock: 25,
-    brand: "Apple",
-    category: "Tablet",
-    thumbnail:
-      "https://cdn.dsmcdn.com/ty395/product/media/images/20220412/16/89266450/103325487/1/1_org_zoom.jpg",
+    title: "",
+    description: "",
+    price: 0.0,
+    discountPercentage: 0,
+    rating: 0,
+    stock: 0,
+    brand: "",
+    category: "",
+    thumbnail:"",
     images: [],
   });
 
@@ -50,8 +49,7 @@ const AddProduct = (props) => {
       stock: 0,
       brand: "",
       category: "",
-      thumbnail:
-        "https://cdn.dsmcdn.com/ty395/product/media/images/20220412/16/89266450/103325487/1/1_org_zoom.jpg",
+      thumbnail:"",
       images: [],
     });
   };

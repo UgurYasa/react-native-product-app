@@ -10,21 +10,24 @@ import {
 import Logo from "../../components/Logo";
 
 const Login = ({ navigation }) => {
+  // sample account you can use to log in=>username:hbingley1 password:CQutx25i8r
+  // const [userName, setUserName] = useState("hbingley1");
+  // const [password, setPassword] = useState("CQutx25i8r");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [users, setUsers] = useState([]);
-  const [password, setPassword] = useState("CQutx25i8r");
-  const [userName, setUserName] = useState("hbingley1");
+
   const [control, setControl] = useState(false);
   const api = "https://dummyjson.com/users?limit=0&select=username,password";
 
-
-  const fetchData=()=>{
+  const fetchData = () => {
     fetch(api)
-    .then(res => res.json())
-    .then(json=>setUsers(json.users));
-  }
-  useEffect(()=>{
+      .then((res) => res.json())
+      .then((json) => setUsers(json.users));
+  };
+  useEffect(() => {
     fetchData();
-  },[])
+  }, []);
 
   const getUserIdByCredentials = (userName, password) => {
     const user = users.find(
@@ -62,7 +65,7 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Logo style={{marginTop: 24,}}/>
+      <Logo style={{ marginTop: 24 }} />
       <TextInput
         style={styles.input}
         onChangeText={setUserName}
