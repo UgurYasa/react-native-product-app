@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,24 +6,26 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-
 import StarRating from "react-native-star-rating";
 import Slider from "@react-native-community/slider";
 import Logo from "../../components/Logo";
 import Input from "../../components/Input/Input";
 
 const AddProduct = (props) => {
+  //There is a problem when sending data to the api, you can use the api in the comment line to check if the codes are working correctly
+  // const api = "https://fakestoreapi.com/products";
+  const api = "https://dummyjson.com/products";
   const [formData, setFormData] = useState({
-    id: "",
-    title: "",
-    description: "",
-    price: 0.0,
-    discountPercentage: 0,
-    rating: 0,
-    stock: 0,
-    brand: "",
-    category: "",
-    thumbnail: "",
+    title: "iPad",
+    description: "Design by Apple",
+    price: 980,
+    discountPercentage: 30,
+    rating: 5,
+    stock: 25,
+    brand: "Apple",
+    category: "Tablet",
+    thumbnail:
+      "https://cdn.dsmcdn.com/ty395/product/media/images/20220412/16/89266450/103325487/1/1_org_zoom.jpg",
     images: [],
   });
 
@@ -33,13 +35,13 @@ const AddProduct = (props) => {
       [key]: value,
     }));
   };
+  //function required for navigation
   const navigateToPage = () => {
-    props.navigation.navigate("ProductDetail", formData);
+    props.navigation.navigate("ProductDetail", { item: formData });
   };
+// TextInput bileşenlerini boşaltmak için formData'yı sıfırla
   const resetInput = () => {
     setFormData({
-      // TextInput bileşenlerini boşaltmak için formData'yı sıfırla
-      id: "",
       title: "",
       description: "",
       price: 0.0,
@@ -48,16 +50,22 @@ const AddProduct = (props) => {
       stock: 0,
       brand: "",
       category: "",
-      thumbnail: "",
+      thumbnail:
+        "https://cdn.dsmcdn.com/ty395/product/media/images/20220412/16/89266450/103325487/1/1_org_zoom.jpg",
       images: [],
     });
   };
 
   const handleSubmit = () => {
-    handleChange("id", "100");
-    handleChange("discountPercentage", parseInt(formData.discountPercentage, 10));
-    //  resetInput();
-    console.log(formData);
+    resetInput();
+
+    fetch(api, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then(console.log);
     navigateToPage();
   };
 
@@ -76,7 +84,6 @@ const AddProduct = (props) => {
           onChangeText={(text) => handleChange("brand", text)}
         />
 
-        {/* Size biraz dahaa büyük yap height */}
         <Input
           style={{ height: 70 }}
           label="Description:"
@@ -102,8 +109,8 @@ const AddProduct = (props) => {
             minimumValue={0}
             maximumValue={100}
             step={1}
-            onValueChange={(newValue) =>
-              handleChange("discountPercentage", newValue.toString())
+            onValueChange={(text) =>
+              handleChange("discountPercentage", parseInt(text, 10))
             }
           />
         </View>

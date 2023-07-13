@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,29 +10,32 @@ import {
 import Logo from "../../components/Logo";
 
 const Login = ({ navigation }) => {
-  //Burada Users dizisi giriş kontrolu için oluşturulmuştur.
-  const users = [
-    { userId: 1, userName: "uguryasa", password: "1234" },
-    { userId: 2, userName: "can", password: "2455" },
-    { userId: 3, userName: "buse", password: "1234" },
-    { userId: 4, userName: "feyza", password: "1234" },
-  ];
-  const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const [users, setUsers] = useState([]);
+  const [password, setPassword] = useState("CQutx25i8r");
+  const [userName, setUserName] = useState("hbingley1");
   const [control, setControl] = useState(false);
+  const api = "https://dummyjson.com/users?limit=0&select=username,password";
+
+
+  const fetchData=()=>{
+    fetch(api)
+    .then(res => res.json())
+    .then(json=>setUsers(json.users));
+  }
+  useEffect(()=>{
+    fetchData();
+  },[])
 
   const getUserIdByCredentials = (userName, password) => {
     const user = users.find(
-      (user) => user.userName === userName.trim() && user.password === password
+      (user) => user.username === userName.trim() && user.password === password
     );
 
-    return user ? user.userId : null;
+    return user ? user.id : null;
   };
 
   const navigateToPage = () => {
-    navigation.navigate("Tabs", {
-      userName: userName.trim() ? userName : "",
-    });
+    navigation.navigate("Tabs");
   };
 
   const secureAccess = (userName) => {
@@ -45,9 +48,9 @@ const Login = ({ navigation }) => {
     // Şifreyi kullanarak giriş işlemlerini burada gerçekleştirin
     {
       !getUserIdByCredentials(userName, password)
-        ? Alert.alert("Uyarı", "Lütfen bilgilernizi kontrol ediniz?", [
+        ? Alert.alert("Warning", "Please check your details?", [
             {
-              text: "Tamam",
+              text: "OK",
               onPress: () => {
                 setControl(!control);
               },

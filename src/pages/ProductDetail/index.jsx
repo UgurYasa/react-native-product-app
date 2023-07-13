@@ -27,7 +27,7 @@ const ProductDetail = (props) => {
             fullStarColor="yellow"
             disabled={true}
             maxStars={5}
-            rating={4}
+            rating={product.rating}
             halfStarEnabled={true}
             starSize={16}
           />

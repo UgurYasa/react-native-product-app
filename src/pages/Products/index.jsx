@@ -8,7 +8,6 @@ import CardProduct from "../../components/CardProduct";
 import Logo from "../../components/Logo";
 import SearchBar from "../../components/SearchBar";
 
-
 const Products = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [liste, setListe] = useState(data);
@@ -61,10 +60,10 @@ const Products = ({ navigation }) => {
   );
 
   return (
-    <View style={{ backgroundColor: "#A9A9A9",flex:1 }}>
+    <View style={{ backgroundColor: "#A9A9A9", flex: 1 }}>
       {data && (
-        <View style={{flex:1}}>
-          <Logo style={{ height: "15%",marginBottom:15, }} />
+        <View style={{ flex: 1 }}>
+          <Logo style={{ height: "15%", marginBottom: 15 }} />
           <SearchBar onChangeText={onChangeText}></SearchBar>
           <FlatList
             style={{ margin: 5, height: "70%" }}
@@ -79,7 +78,5 @@ const Products = ({ navigation }) => {
     </View>
   );
 };
-
-
 
 export default Products;
